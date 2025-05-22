@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>Simple Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    input, select, button { padding: 5px; margin: 5px; }
+    .result { margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Simple Calculator</h1>
+  <input id="num1" type="number" placeholder="第一個數字">
+  <select id="operator">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">×</option>
+    <option value="/">÷</option>
+  </select>
+  <input id="num2" type="number" placeholder="第二個數字">
+  <button id="calculate">計算</button>
+  <div id="result" class="result"></div>
+  <script>
+    document.getElementById('calculate').addEventListener('click', function() {
+      const n1 = parseFloat(document.getElementById('num1').value);
+      const n2 = parseFloat(document.getElementById('num2').value);
+      const op = document.getElementById('operator').value;
+      const resultEl = document.getElementById('result');
+      if (isNaN(n1) || isNaN(n2)) {
+        resultEl.textContent = '請輸入有效的數字';
+        return;
+      }
+      if (op === '/' && n2 === 0) {
+        resultEl.textContent = '錯誤：除以零';
+        return;
+      }
+      let res;
+      switch (op) {
+        case '+': res = n1 + n2; break;
+        case '-': res = n1 - n2; break;
+        case '*': res = n1 * n2; break;
+        case '/': res = n1 / n2; break;
+      }
+      resultEl.textContent = '結果：' + res;
+    });
+  </script>
+</body>
+</html>
